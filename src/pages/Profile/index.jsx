@@ -107,6 +107,7 @@ const Profile = () => {
         setUserInfo({ ...userInfo, image: null });
         toast.success("Profile image removed successfully");
         setImage(null);
+        console.log(response.data);
       }
     } catch (error) {
       console.log(error);
