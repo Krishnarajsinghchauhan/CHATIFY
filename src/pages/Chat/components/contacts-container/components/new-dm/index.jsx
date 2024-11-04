@@ -34,31 +34,16 @@ const NewDM = () => {
         const response = await apiClient.post(
           SEARCH_CONTACTS_ROUTES,
           { searchTerm },
-          { withCredentials: true } // Ensure cookies are sent with the request
+          { withCredentials: true }
         );
-
         if (response.status === 200 && response.data.contacts) {
           setSearchContacts(response.data.contacts);
         }
       } else {
-        setSearchContacts([]); // Clear search results if search term is empty
+        setSearchContacts([]);
       }
     } catch (error) {
-      // Log specific error details
-      if (error.response) {
-        console.error("Error status:", error.response.status);
-        console.error("Error data:", error.response.data);
-
-        if (error.response.status === 401) {
-          // Handle unauthorized access, e.g., redirect to login
-          console.error(
-            "Unauthorized access - user might need to log in again."
-          );
-          // Optionally: Redirect to login or show a message
-        }
-      } else {
-        console.error("Network error:", error.message);
-      }
+      console.log({ error });
     }
   };
 
